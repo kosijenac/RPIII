@@ -28,6 +28,22 @@ namespace Upisi
                 throw new KeyNotFoundException("Ne postoji kolegij s tom šifrom.");
             }
         }
+        public string this[Student student]
+        {
+            get
+            {
+                List<Kolegij> kolegiji = new List<Kolegij>();
+                int suma_ects = 0;
+                foreach (KeyValuePair<Kolegij, List<Student>> par in upisi)
+                    if (par.Value.Contains(student))
+                    {
+                        kolegiji.Add(par.Key);
+                        suma_ects += par.Key.ects;
+                    }
+
+
+            }
+        }
 
         public override string ToString()
         {
