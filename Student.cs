@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Upisi
 {
@@ -16,6 +17,14 @@ namespace Upisi
         {
             return jmbag == obj.jmbag;
         }
+        public override int GetHashCode()
+        {
+            return jmbag.GetHashCode();
+        }
+        public override string ToString()
+        {
+            return $"{jmbag} ({prezime}, {ime})";
+        }
 
         public Student(string jmbag, string ime, string prezime)
         {
@@ -25,7 +34,19 @@ namespace Upisi
         }
         public Student()
         {
-            Console.WriteLine("Unesite podatke o studentu u formatu [JMBAG, imena, prezimena]")
+            bool ispravan = false;
+            string unos = "";
+            while (!ispravan)
+            {
+                Console.WriteLine("Unesite podatke o studentu u formatu JMBAG, imena, prezimena");
+                unos = Console.ReadLine();
+                Regex reg_unos = new Regex(@"^\d{10},\s[A-Z][a-z]+(\s[A-Z][a-z]+)*,\s[A-Z][a-z]+(\s[A-Z][a-z]+)*$");
+                ispravan = reg_unos.IsMatch(unos);
+            }
+            string[] parametri = unos.Split(", ");
+            jmbag = parametri[0];
+            ime = parametri[1];
+            prezime = parametri[2];
         }
     }
 }
