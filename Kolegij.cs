@@ -9,8 +9,7 @@ namespace Upisi
         public readonly string sifra, naziv;
         public readonly int ects;
 
-        public string Sifra { get => sifra; }
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Kolegij && Equals(obj);
         }

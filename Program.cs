@@ -1,13 +1,10 @@
 ﻿//using System.Collections.Immutable;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Upisi;
 
 //fakultet te neki studenti i kolegiji za testiranje
 // (zakomentirano je unos korisnika nakon pokretanja):
-Fakultet PMF = new ("Prirodoslovno-matematicki fakultet");
-Student A = new ("1234567890", "John", "Doe"),
+Fakultet PMF = new("Prirodoslovno-matematicki fakultet");
+Student A = new("1234567890", "John", "Doe"),
     B = new(), //1324356479, Ana Marija, Garcia Gomes Delevigne
     C = new(); //0012401424, Clara, Del Horvat
 Kolegij[] kolegiji = {
@@ -27,7 +24,7 @@ try
 {
     PMF += new Kolegij("21508", "TZK", 0); //ista sifra kao kod Mat. an. 2
 }
-catch(Exception e)
+catch (Exception e)
 {
     Console.WriteLine(e.Message); //Kolegij s tom sifrom vec postoji!
 }
@@ -47,7 +44,7 @@ PMF["21508"] += C;
 //pokusamo upisati na Lin. alg. 1 vec tamo upisanog studenta (isti JMBAG!)
 try
 {
-    PMF["21509"] += new Student("1234567890","Neki","Student");
+    PMF["21509"] += new Student("1234567890", "Neki", "Student");
 }
 catch (Exception e)
 {

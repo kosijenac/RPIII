@@ -9,7 +9,7 @@ namespace Upisi
     {
         public readonly string jmbag, ime, prezime;
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is Student && Equals(obj);
         }
@@ -24,6 +24,19 @@ namespace Upisi
         public override string ToString()
         {
             return $"{jmbag} ({prezime}, {ime})";
+        }
+
+        public static List<Student> operator +(List<Student> orig, Student novi)
+        {
+            if (orig.Contains(novi))
+                throw new ArgumentException("Taj je student već upisan na kolegij.");
+            orig.Add(novi);
+            return orig;
+        }
+        public static List<Student> operator -(List<Student> orig, Student novi)
+        {
+            orig.Remove(novi);
+            return orig;
         }
 
         public Student(string jmbag, string ime, string prezime)
