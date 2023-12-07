@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Upisi
 {
-    class Kolegij
+    class Kolegij : IComparable<Kolegij>
     {
         public readonly string sifra, naziv;
         public readonly int ects;
 
         public override bool Equals(object? obj)
         {
-            return obj is Kolegij && Equals(obj);
+            return obj is Kolegij && Equals((Kolegij)obj);
         }
         public bool Equals(Kolegij obj)
         {
@@ -20,6 +20,12 @@ namespace Upisi
         public override int GetHashCode()
         {
             return sifra.GetHashCode();
+        }
+        public int CompareTo(Kolegij? rhs)
+        {
+            if (rhs == null)
+                throw new ArgumentNullException();
+            return sifra.CompareTo(rhs.sifra);
         }
         public override string ToString()
         {

@@ -5,13 +5,13 @@ using System.Text.RegularExpressions;
 
 namespace Upisi
 {
-    class Student
+    class Student : IComparable<Student>
     {
         public readonly string jmbag, ime, prezime;
 
         public override bool Equals(object? obj)
         {
-            return obj is Student && Equals(obj);
+            return obj is Student && Equals((Student)obj);
         }
         public bool Equals(Student obj)
         {
@@ -20,6 +20,12 @@ namespace Upisi
         public override int GetHashCode()
         {
             return jmbag.GetHashCode();
+        }
+        public int CompareTo(Student? rhs)
+        {
+            if (rhs == null)
+                throw new ArgumentNullException();
+            return jmbag.CompareTo(rhs.jmbag);
         }
         public override string ToString()
         {
